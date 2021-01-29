@@ -32,7 +32,7 @@ function callOMDB(movie){
         //call render movie function
         renderMovie(data);
         //call GoogleBooks API
-        //bookSearch(Title);
+        bookSearch(Title);
         //
     });
   };
@@ -54,7 +54,7 @@ function bookSearch(Title){
           },
           type: "GET"
         });
-        // $("#books").val(" ");
+        
   };
 
   function renderMovie(data){
@@ -89,8 +89,8 @@ function bookSearch(Title){
   function renderBooks(response){
     console.log(response);
     $(".results").empty();
-    for(var i = 0; i < response.items.length; i++){
-      
+    for(var i = 0; i < 4; i++){
+      //(var i = 0; i < response.items.length; i++)
       var imageLink = response.items[i].volumeInfo.imageLinks.thumbnail;
       var previewLink = response.items[i].volumeInfo.previewLink
       var bookTitle = response.items[i].volumeInfo.title;
@@ -128,8 +128,8 @@ function bookSearch(Title){
     var search = $("#books").val().trim();
     console.log(search);
     if(search){
-      console.log(search);
       callOMDB(search);
+      $("#books").val("");
     }else{
       alert("NOTHING!")
     };
