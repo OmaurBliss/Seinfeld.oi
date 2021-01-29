@@ -1,7 +1,26 @@
+//pseudo-coding out the javascript
+//user enters a move title into an input field and clicks a button.
+//on click-- if there is a value in the input field, call 'callOMDB' and pass value as parameter, if not, let user know we need a value, or just return.
+
+//decide when to push value is saved to an empty array, and when value should be saved to local storage. 
+
+//callOMDB will pull movie info from the API, call the renderMovie function, call the generate button/list item function, and call the bookSearch function.
+
+//bookSearch will call the GoogleBooks API  and will pass the results to the renderBooks function
+
+//renderMovie--will display information about the movie (should there be a "go-back" button that will clear results & local storage(last entry) in case the movie the user entered wasn't the one they meant?)
+
+//renderBooks--will display the books that are related to the movie that the user entered.  What next?  User can click on a book title and then....what happens?  Book is saved to a my library list?  Book title will pass through callOMDB to let the user see if there's a movie based off of the book they clicked?
 
 
 
-var movie = "Ender's Game";
+//NOT BUILT YET BUT---we need a myResults function that will add elements to where ever we plan on holding the user's previous searches (drop down list from navbar) etc.  Also possibly render the previous search list,  user can select an item from that list and the value of the item will pass through to the call API functions and paint the page
+//also renderButtons or renderListItems--will hold previous search values and allow user to toggle back and forth between searches
+
+//should we include a "My Library" html page that the user can link to off of the Navbar that will display the most recent title they looked up along with their book/movie history?
+
+
+var movie = "Tank Girl";
 var queryURL = "https://www.omdbapi.com/?t=" + movie + "&apikey=trilogy";
 function callOMDB(movie){
     $.ajax({
