@@ -32,7 +32,7 @@ function callOMDB(movie){
         //call render movie function
         renderMovie(data);
         //call GoogleBooks API
-        bookSearch(Title);
+        //bookSearch(Title);
         //
     });
   };
@@ -59,6 +59,7 @@ function bookSearch(Title){
 
   function renderMovie(data){
       console.log(data);
+     
       var movieTitle = data.Title;
       var moviePosterURL = data.Poster; //attach to src attribute on image tag
       var genre = data.Genre;
@@ -70,6 +71,18 @@ function bookSearch(Title){
       console.log("Movie Genre: "+genre);
       console.log("Released: "+releaseDate);
       console.log("Plot: "+plot);
+      var titleEl = $("<h1>");
+      var genreEl = $("<p>");
+      var plotEl = $("<p>");
+      var imgEl = $("<img>");
+
+      titleEl.text(movieTitle);
+      genreEl.text(genre);
+      plotEl.text(plot)
+      imgEl.attr({"src": moviePosterURL, "alt": "movie poster"})
+
+
+      $(".results").append(titleEl, genreEl, imgEl, plotEl)
 
   };
   
