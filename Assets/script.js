@@ -20,9 +20,10 @@
 //should we include a "My Library" html page that the user can link to off of the Navbar that will display the most recent title they looked up along with their book/movie history?
 
 
-var movie = "Tank Girl";
-var queryURL = "https://www.omdbapi.com/?t=" + movie + "&apikey=trilogy";
+// var movie = "Tank Girl";
+
 function callOMDB(movie){
+  var queryURL = "https://www.omdbapi.com/?t=" + movie + "&apikey=trilogy";
     $.ajax({
       url: queryURL,
       method: "GET"
@@ -35,7 +36,7 @@ function callOMDB(movie){
         //
     });
   };
-  callOMDB(movie);
+ 
 
 //calls GoogleBooks API
 function bookSearch(Title){
@@ -84,10 +85,22 @@ function bookSearch(Title){
       var author = response.items[i].volumeInfo.authors;
       var bookSummary = response.items[i].volumeInfo.description;
 
-      console.log("Book cover image link: "+imageLink);
-      console.log("Book title: "+bookTitle);
-      console.log("Author: "+author);
-      console.log("Book Summary: "+bookSummary);
+      var titleEl = $("<h1>");
+      var authorEl = $("<p>");
+      var summaryEl = $("<p>");
+      var imgEl = $("<img>");
+
+      titleEl.text(bookTitle);
+      authorEl.text(author);
+      summaryEl.text(bookSummary)
+      imgEl.attr({"src": imageLink, "alt": "book cover"})
+
+
+      $(".results").append(titleEl, authorEl, imgEl, summaryEl)
+      // console.log("Book cover image link: "+imageLink);
+      // console.log("Book title: "+bookTitle);
+      // console.log("Author: "+author);
+      // console.log("Book Summary: "+bookSummary);
     //   console.log(previewLink);
       //$(".results").append($("<h2>").text(response.items[i].volumeInfo.title));
       //$(".results").append(bookCover);
@@ -97,4 +110,16 @@ function bookSearch(Title){
     }
   }
   
-//   $("button").on("click", bookSearch);
+  $("button").on("click", function(){
+
+    var search = $("#books").val().trim();
+    console.log(search);
+    if(search){
+      console.log(search);
+      callOMDB(search);
+    }else{
+      alert("NOTHING!")
+    };
+  })
+    
+  
