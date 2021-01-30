@@ -31,9 +31,6 @@ function callOMDB(movie){
       var Title = data.Title;
         //call render movie function
         renderMovie(data);
-        //call GoogleBooks API
-        // bookSearch(Title);
-        //
     });
   };
  
@@ -89,24 +86,26 @@ function bookSearch(Title){
     $(".results").empty();
     for(var i = 0; i < 4; i++){
       var imageLink = response.items[i].volumeInfo.imageLinks.thumbnail;
-      var previewLink = response.items[i].volumeInfo.previewLink
       var bookTitle = response.items[i].volumeInfo.title;
       // var bookCover = $("<img>").attr({"src": imageLink, "alt": "Book cover"})
       var author = response.items[i].volumeInfo.authors;
       var bookSummary = response.items[i].volumeInfo.description;
-
-      var titleEl = $("<h1>");
-      var authorEl = $("<p>");
-      var summaryEl = $("<p>");
-      var imgEl = $("<img>");
-
-      titleEl.text(bookTitle);
-      authorEl.text(author);
-      summaryEl.text(bookSummary)
-      imgEl.attr({"src": imageLink, "alt": "book cover"})
-
-
-      $(".results").append(titleEl, authorEl, imgEl, summaryEl)
+      // var imgAttr = attr({"src": imageLink, "alt": "book cover"})
+      var bookHtml = `<div class="container">
+      <div class="card-group vgr-cards">
+      <div class="card">
+      <div class="card-img-body">
+      <img class="card-img test"  src=${imageLink} alt="book cover">
+      </div>
+      <div class="card-body">
+        <h4 class="card-title">${bookTitle}</h4>
+        <p class="card-text">${author}</p>
+        <p class="card-text">${bookSummary}</p>
+        <a href="#" class="btn btn-outline-primary">Primary</a>
+      </div>
+      </div>`;    
+      
+      $(".book-container").append(bookHtml);
     }
   }
 
@@ -119,7 +118,6 @@ function bookSearch(Title){
       callOMDB(search);
       $("#firstSearch").val("");
     }else{
-      // alert("NOTHING!")
       return;
     };
   })
@@ -127,7 +125,7 @@ function bookSearch(Title){
 //call GoogleBooks within Modal
  $("#findBooks").on("click", function(){
   bookSearch($(this).attr("data-movie"));
-  // $("#firstSearch").val("");
+  
   $("#movieModal").modal("hide");
  });
 
@@ -135,7 +133,7 @@ function bookSearch(Title){
   $(".closeModal").on("click", function(){
     $("#firstSearch").val("");
     $("#movieModal").modal("hide");
-    // $("#firstSearch").val("");
+    
   });
     
   
