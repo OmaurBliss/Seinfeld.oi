@@ -21,6 +21,7 @@ footer {
 }
 
 .container {
+    margin-top: 12px;
     text-align: center;
     border: 1px solid black;
     box-shadow: 2px 2px 2px black;
@@ -36,3 +37,14 @@ footer {
     margin: 5px 15px;
     color: maroon;
 }
+
+.navbarColor {
+    background-color: maroon;
+}
+
+/* Having issues getting the color to not be blue on click, same with other buttons, but this is a minor issue
+#firstSearch {
+    background-color: maroon;
+    color: white;
+    border: rgb(0, 0, 12, .8);
+} */

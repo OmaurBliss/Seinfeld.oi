@@ -39,9 +39,9 @@
       <!-- modal ends -->
 
     <!-- //navbar start -->
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <nav class="navbar navbar-expand-lg navbar-dark navbarColor">
       <div class="container-fluid">
-        <a class="navbar-brand" href="#">Navbar</a>
+        <a class="navbar-brand" href="#"><i class="fas fa-book-open"></i> Biblioflix</a>
         <button
           class="navbar-toggler"
           type="button"
@@ -59,12 +59,14 @@
               <a class="nav-link active" aria-current="page" href="#">Home</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#">Features</a>
+              <a class="nav-link active" aria-current="page" href="#">Movie Search</a>
             </li>
-            <li class="nav-item">
+            <!-- <li class="nav-item">
               <a class="nav-link" href="#">Pricing</a>
-            </li>
-            <li class="nav-item dropdown">
+            </li> -->
+
+            <!-- Code for dropdown in navbar -->
+            <!-- <li class="nav-item dropdown">
               <a
                 class="nav-link dropdown-toggle"
                 href="#"
@@ -78,22 +80,21 @@
               <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                 <li><a class="dropdown-item" href="#">Action</a></li>
                 <li><a class="dropdown-item" href="#">Another action</a></li>
-                <li><a class="dropdown-item" href="#">Something else here</a></li>
               </ul>
-            </li>
+            </li> -->
+
           </ul>
         </div>
       </div>
     </nav>
     <!-- navbar end -->
-    <div class="jumbotron">
-        <h1 class="display-4">Hello, world!</h1>
-        
-        
-        
-      </div>
+
+    <!-- <div class="jumbotron">
+      <h1 class="display-4">Hello, world!</h1>   
+    </div> -->
+
     <main class="container">
-      <h1>Testing API Calls</h1>
+      <h2>Enter title here</h2>
       <input id="books" type="text" for="books" />
       <button id="firstSearch" class="d-inline btn btn-info">Book Me!</button>
       <div class="results mt-5"></div>
