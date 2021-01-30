@@ -1,69 +1,75 @@
 footer {
-    position: fixed;
-    left: 0;
-    bottom: 0;
-    width: 100%;
-    background-color: maroon;
-    height: 50px;
-    border-top-width: 5px;
-    border-top-style: solid;
-    border-top-color:black;
-    text-align: center;
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  background-color: maroon;
+  height: 50px;
+  border-top-width: 5px;
+  border-top-style: solid;
+  border-top-color: black;
+  text-align: center;
 }
 
 .navbar {
-    border-bottom-width: 5px;
-    border-bottom-style: solid;
-    border-bottom-color: black;
+  border-bottom-width: 5px;
+  border-bottom-style: solid;
+  border-bottom-color: black;
 }
 
 .btn-color {
-    margin-top: 4px;
-    margin-bottom: 10px;
-    margin-left: 35px;
-    margin-right: 35px;
-    background-color: white;
-    color: maroon;
-    border: rgb(0, 0, 12, .8);
+  margin-top: 4px;
+  margin-bottom: 10px;
+  margin-left: 35px;
+  margin-right: 35px;
+  background-color: white;
+  color: maroon;
+  border: 1px solid rgb(0, 0, 12, 0.8);
 }
 
 .btn-search {
-    background-color: maroon;
-    color: white;
-    border: rgb(0, 0, 12, .8);
+  background-color: maroon;
+  color: white;
+  border: rgb(0, 0, 12, 0.8);
 }
 
 .container {
-    margin-top: 12px;
-    background-color: rgb(224, 167, 24);
-    text-align: center;
-    border: 2px solid black;
-    box-shadow: 0 40px 60px 0 rgba(15, 15, 15, 0.4);
+  margin-top: 12px;
+  background-color: rgb(224, 167, 24);
+  text-align: center;
+  border: 2px solid black;
+  box-shadow: 0 40px 60px 0 rgba(15, 15, 15, 0.4);
 }
 
 .jumbotron {
-    text-align: center;
-    background-color: maroon;
-    color: white;
+  text-align: center;
+  background-color: maroon;
+  color: white;
 }
 
 .searchIcon {
-    margin: 5px 15px;
-    color: maroon;
+  margin: 5px 15px;
+  color: maroon;
 }
 
 .navbarColor {
-    background-color: maroon;
+  background-color: maroon;
 }
 
 body {
-    height: 100%;
-    background-image:url('././images/Movie_background_image.png');
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover; 
+  height: auto;
+  background-image: url("././images/Movie_background_image.png");
+  background-attachment: fixed;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
 }
 
 #books {
-    border-radius: 2px;
+  border-radius: 2px;
+}
+.btn-color:hover {
+background-color: rgb(128, 0, 0);
+color:white;
+border: 1px solid white;
 }
