@@ -20,7 +20,7 @@
 //should we include a "My Library" html page that the user can link to off of the Navbar that will display the most recent title they looked up along with their book/movie history?
 
 
-// var movie = "Tank Girl";
+
 
 function callOMDB(movie){
   var queryURL = "https://www.omdbapi.com/?t=" + movie + "&apikey=trilogy";
@@ -32,7 +32,7 @@ function callOMDB(movie){
         //call render movie function
         renderMovie(data);
         //call GoogleBooks API
-        bookSearch(Title);
+        // bookSearch(Title);
         //
     });
   };
@@ -57,44 +57,41 @@ function bookSearch(Title){
         
   };
 
+  //render info from OMDB API to modal
   function renderMovie(data){
       console.log(data);
-     
+      $(".modal-body").empty();
       var movieTitle = data.Title;
-      var moviePosterURL = data.Poster; //attach to src attribute on image tag
+      var moviePosterURL = data.Poster;
       var genre = data.Genre;
       var releaseDate = data.Released;
       var plot = data.Plot;
-
-      console.log("Movie title: "+movieTitle);
-      console.log("Poster URL: "+moviePosterURL);
-      console.log("Movie Genre: "+genre);
-      console.log("Released: "+releaseDate);
-      console.log("Plot: "+plot);
-      var titleEl = $("<h1>");
+      var titleEl = $("h5");
       var genreEl = $("<p>");
       var plotEl = $("<p>");
       var imgEl = $("<img>");
+      var releasedEl = $("<p>")
 
       titleEl.text(movieTitle);
       genreEl.text(genre);
       plotEl.text(plot)
       imgEl.attr({"src": moviePosterURL, "alt": "movie poster"})
+      releasedEl.text("Released: "+releaseDate);
 
-
-      $(".results").append(titleEl, genreEl, imgEl, plotEl)
-
+      $("#findBooks").attr("data-movie", movieTitle);
+      $(".modal-body").append(genreEl, imgEl, plotEl, releasedEl)
+    $("#movieModal").modal("show");
   };
   
+  //render info from Google Books API to results container
   function renderBooks(response){
     console.log(response);
     $(".results").empty();
     for(var i = 0; i < 4; i++){
-      //(var i = 0; i < response.items.length; i++)
       var imageLink = response.items[i].volumeInfo.imageLinks.thumbnail;
       var previewLink = response.items[i].volumeInfo.previewLink
       var bookTitle = response.items[i].volumeInfo.title;
-      //var bookCover = $("<img>").attr({"src": imageLink, "alt": "Book cover"})
+      // var bookCover = $("<img>").attr({"src": imageLink, "alt": "Book cover"})
       var author = response.items[i].volumeInfo.authors;
       var bookSummary = response.items[i].volumeInfo.description;
 
@@ -110,29 +107,35 @@ function bookSearch(Title){
 
 
       $(".results").append(titleEl, authorEl, imgEl, summaryEl)
-      // console.log("Book cover image link: "+imageLink);
-      // console.log("Book title: "+bookTitle);
-      // console.log("Author: "+author);
-      // console.log("Book Summary: "+bookSummary);
-    //   console.log(previewLink);
-      //$(".results").append($("<h2>").text(response.items[i].volumeInfo.title));
-      //$(".results").append(bookCover);
-      // $(".results").append($("<img>").attr("src", previewLink));
-      //$(".results").append($("<h3>").text(response.items[i].volumeInfo.authors));
-      //$(".results").append($("<p>").text(response.items[i].volumeInfo.description));
     }
   }
-  
-  $("button").on("click", function(){
 
-    var search = $("#books").val().trim();
-    console.log(search);
+
+  //click-event handlers
+  //initialize search
+  $("#firstSearch").on("click", function(){
+     var search = $("#books").val().trim();
     if(search){
       callOMDB(search);
-      $("#books").val("");
+      $("#firstSearch").val("");
     }else{
-      alert("NOTHING!")
+      // alert("NOTHING!")
+      return;
     };
   })
+
+//call GoogleBooks within Modal
+ $("#findBooks").on("click", function(){
+  bookSearch($(this).attr("data-movie"));
+  // $("#firstSearch").val("");
+  $("#movieModal").modal("hide");
+ });
+
+  //close modal
+  $(".closeModal").on("click", function(){
+    $("#firstSearch").val("");
+    $("#movieModal").modal("hide");
+    // $("#firstSearch").val("");
+  });
     
   
