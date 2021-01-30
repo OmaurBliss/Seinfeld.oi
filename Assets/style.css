@@ -22,9 +22,10 @@ footer {
 
 .container {
     margin-top: 12px;
+    background-color: rgb(224, 167, 24);
     text-align: center;
-    border: 1px solid black;
-    box-shadow: 2px 2px 2px black;
+    border: 2px solid black;
+    box-shadow: 0 40px 60px 0 rgba(15, 15, 15, 0.4);
 }
 
 .jumbotron {
@@ -42,6 +43,13 @@ footer {
     background-color: maroon;
 }
 
+body {
+    height: 100%;
+    background-image:url('././images/Movie_background_image.png');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover; 
+}
 /* Having issues getting the color to not be blue on click, same with other buttons, but this is a minor issue
 #firstSearch {
     background-color: maroon;
