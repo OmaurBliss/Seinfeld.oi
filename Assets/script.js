@@ -4,13 +4,9 @@
 
 //decide when to push value is saved to an empty array, and when value should be saved to local storage. 
 
-//callOMDB will pull movie info from the API, call the renderMovie function, call the generate button/list item function, and call the bookSearch function.
-
-//bookSearch will call the GoogleBooks API  and will pass the results to the renderBooks function
-
 //renderMovie--will display information about the movie (should there be a "go-back" button that will clear results & local storage(last entry) in case the movie the user entered wasn't the one they meant?)
 
-//renderBooks--will display the books that are related to the movie that the user entered.  What next?  User can click on a book title and then....what happens?  Book is saved to a my library list?  Book title will pass through callOMDB to let the user see if there's a movie based off of the book they clicked?
+//renderBooks--will display the books that are related to the movie that the user entered. add data-book to each generated card element;
 
 
 
@@ -19,8 +15,9 @@
 
 //should we include a "My Library" html page that the user can link to off of the Navbar that will display the most recent title they looked up along with their book/movie history?
 
-
-
+//this will hold local storage
+var userLibrary = JSON.parse(localStorage.getItem('myBooks'))|| [];
+console.log(userLibrary);
 
 function callOMDB(movie){
   var queryURL = "https://www.omdbapi.com/?t=" + movie + "&apikey=trilogy";
@@ -38,8 +35,7 @@ function callOMDB(movie){
 //calls GoogleBooks API
 function bookSearch(Title){
     var search = Title //$("#books").val().trim();
-  
-  // var API_KEY = "AIzaSyDwKeamH8RwfRQQ9fG7dA2j1KTOVqGcv3A";
+
   var queryURL = "https://www.googleapis.com/books/v1/volumes?q="+search;
   
         $.ajax({
@@ -102,17 +98,37 @@ function bookSearch(Title){
         <h4 class="card-title">${bookTitle}</h4>
         <p class="card-text">${author}</p>
         <p class="card-text">${bookSummary}</p>
-        <a href="#" class="btn btn-color">Add to My Library</a>
+        <button class="btn btn-color btn-book" data-book="${bookTitle}">Add to My Library</button>
       </div>
       </div>
       </section>`;
-
-      console.log(bookHtml);      
-    
-      $("main").append(bookHtml);
+      console.log(bookTitle);
+      // console.log(bookHtml);      
+      $(".results").append(bookHtml);
     }
+    $(".btn-book").on("click", function(e){
+      e.preventDefault
+      var savedBook = $(this).attr("data-book");
+      userLibrary.push(savedBook);
+      console.log(userLibrary);
+      storeBooks();
+    })
+
+
+
   }
 
+    function storeBooks(){
+
+    localStorage.setItem("myBooks", JSON.stringify(userLibrary));
+  }
+
+// function storeScores(){
+//   var storedScores = JSON.parse(localStorage.getItem("user score")) || [];
+//       storedScores.push(userScore);
+//       localStorage.setItem("user score", JSON.stringify(storedScores));
+
+// };
 
   //click-event handlers
   //initialize search
