@@ -2,7 +2,7 @@
 //user enters a move title into an input field and clicks a button.
 //on click-- if there is a value in the input field, call 'callOMDB' and pass value as parameter, if not, let user know we need a value, or just return.
 
-//decide when to push value is saved to an empty array, and when value should be saved to local storage. 
+
 
 //renderMovie--will display information about the movie (should there be a "go-back" button that will clear results & local storage(last entry) in case the movie the user entered wasn't the one they meant?)
 
@@ -17,7 +17,7 @@
 
 //this will hold local storage
 var userLibrary = JSON.parse(localStorage.getItem('myBooks'))|| [];
-console.log(userLibrary);
+
 
 function callOMDB(movie){
   var queryURL = "https://www.omdbapi.com/?t=" + movie + "&apikey=trilogy";
@@ -52,7 +52,7 @@ function bookSearch(Title){
 
   //render info from OMDB API to modal
   function renderMovie(data){
-      console.log(data);
+     
       $(".modal-body").empty();
       var movieTitle = data.Title;
       var moviePosterURL = data.Poster;
@@ -78,7 +78,7 @@ function bookSearch(Title){
   
   //render info from Google Books API to results container
   function renderBooks(response){
-    console.log(response);
+    
     $(".results").empty();
     for(var i = 0; i < 4; i++){
       var imageLink = response.items[i].volumeInfo.imageLinks.thumbnail;
@@ -92,43 +92,52 @@ function bookSearch(Title){
       <div class="card-group vgr-cards">
       <div class="card">
       <div class="card-img-body">
-      <img class="card-img test"  src=${imageLink} alt="book cover">
+      <img class="card-img"  src=${imageLink} alt="book cover">
       </div>
       <div class="card-body">
         <h4 class="card-title">${bookTitle}</h4>
-        <p class="card-text">${author}</p>
-        <p class="card-text">${bookSummary}</p>
+        <p class="card-text author">${author}</p>
+        <p class="card-text summary">${bookSummary}</p>
         <button class="btn btn-color btn-book" data-book="${bookTitle}">Add to My Library</button>
       </div>
       </div>
       </section>`;
-      console.log(bookTitle);
-      // console.log(bookHtml);      
+      
+           
       $(".results").append(bookHtml);
     }
     $(".btn-book").on("click", function(e){
       e.preventDefault
-      var savedBook = $(this).attr("data-book");
+      var savedBook = {
+        // "Poster":$(this).parents($(".card-img-body").child($(".card-img").attr("src"))),
+        "Title": $(this).attr("data-book"),
+        "Author": $(this).siblings(".author").html(),
+        "Summary": $(this).siblings(".summary").html(),
+        "Cover": $(this).parent().siblings(".card-img-body").children(".card-img").attr("src")
+      }
+
+      // console.log(savedBook);
       userLibrary.push(savedBook);
-      console.log(userLibrary);
       storeBooks();
-    })
-
-
+    });
 
   }
 
     function storeBooks(){
-
     localStorage.setItem("myBooks", JSON.stringify(userLibrary));
   }
 
-// function storeScores(){
-//   var storedScores = JSON.parse(localStorage.getItem("user score")) || [];
-//       storedScores.push(userScore);
-//       localStorage.setItem("user score", JSON.stringify(storedScores));
+  
+  function loadMyLibrary(){
 
-// };
+    console.log(userLibrary);
+   
+      // for(var j = 0; j < userLibrary.length; j++){
+      //   console.log(bookSearch(j));
+      // }
+    
+  };
+  loadMyLibrary();
 
   //click-event handlers
   //initialize search
