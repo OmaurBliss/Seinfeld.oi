@@ -128,16 +128,36 @@ function bookSearch(Title){
   }
 
   
+  //called when libraryindex.html loads
   function loadMyLibrary(){
-
     console.log(userLibrary);
-   
-      // for(var j = 0; j < userLibrary.length; j++){
-      //   console.log(bookSearch(j));
-      // }
+      for(var j = 0; j < userLibrary.length; j++){
+        var savedTitle = userLibrary[j].Title;
+        var savedAuthor = userLibrary[j].Author;
+        var savedSummary = userLibrary[j].Summary;
+        var savedCover = userLibrary[j].Cover;
+
+        var savedHtml = `<section class="container">
+        <div class="container">
+        <div class="card-group vgr-cards">
+        <div class="card">
+        <div class="card-img-body">
+        <img class="card-img"  src=${savedCover} alt="book cover">
+        </div>
+        <div class="card-body">
+          <h4 class="card-title">${savedTitle}</h4>
+          <p class="card-text author">${savedAuthor}</p>
+          <p class="card-text summary">${savedSummary}</p>
+          <button class="btn btn-color btn-book" data-book="${savedTitle}">Add to My Library</button>
+        </div>
+        </div>
+        </section>`;
+
+        $(".myLibrary").append(savedHtml);
+      }
     
   };
-  loadMyLibrary();
+  
 
   //click-event handlers
   //initialize search
