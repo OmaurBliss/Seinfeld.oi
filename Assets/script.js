@@ -17,7 +17,7 @@
 
 //this will hold local storage
 var userLibrary = JSON.parse(localStorage.getItem('myBooks'))|| [];
-
+var storedMovieSearches = []
 
 function callOMDB(movie){
   var queryURL = "https://www.omdbapi.com/?t=" + movie + "&apikey=trilogy";
@@ -170,7 +170,14 @@ function bookSearch(Title){
       return;
     };
     $("#books").val("");
+    storeSearch (search);
   });
+  function storeSearch (search) {
+    storedMovieSearches.push(search)
+    sessionStorage.setItem("recent",JSON.stringify (storedMovieSearches))
+ console.log(sessionStorage.getItem("recent"))  
+}
+
 
 //modal click events
  $("#findBooks").on("click", function(){
