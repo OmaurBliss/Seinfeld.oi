@@ -30,7 +30,13 @@ footer {
 .btn-search {
   background-color: maroon;
   color: white;
-  border: rgb(0, 0, 12, 0.8);
+  border: 1px solid rgb(0, 0, 12, 0.8);
+}
+
+.btn-search:hover {
+    background-color: white;
+    color: maroon;
+    border: 1px solid rgb(0, 0, 12, .8);
 }
 
 .container {
@@ -74,3 +80,4 @@ body {
   color: white;
   border: 1px solid white;
 }
+
