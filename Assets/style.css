@@ -34,9 +34,27 @@ footer {
 }
 
 .btn-search:hover {
-    background-color: white;
-    color: maroon;
-    border: 1px solid rgb(0, 0, 12, .8);
+  background-color: white;
+  color: maroon;
+  border: 1px solid rgb(0, 0, 12, 0.8);
+}
+
+.btn-modal {
+  margin-top: 4px;
+  margin-bottom: 10px;
+  background-color: maroon;
+  color: white;
+  border: 1px solid rgb(0, 0, 12, 0.8);
+}
+
+.btn-modal:hover {
+  background-color: white;
+  color: maroon;
+}
+
+.search-modal {
+  background-color: rgb(224, 167, 24);
+  color: white;
 }
 
 .container {
@@ -80,4 +98,3 @@ body {
   color: white;
   border: 1px solid white;
 }
-

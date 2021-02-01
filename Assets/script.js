@@ -172,6 +172,7 @@ function bookSearch(Title){
     $("#books").val("");
     storeSearch (search);
   });
+  
   function storeSearch (search) {
     storedMovieSearches.push(search)
     sessionStorage.setItem("recent",JSON.stringify (storedMovieSearches))
