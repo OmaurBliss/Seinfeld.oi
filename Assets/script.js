@@ -91,7 +91,8 @@ function bookSearch(Title){
       var author = response.items[i].volumeInfo.authors;
       var bookSummary = response.items[i].volumeInfo.description;
       // var imgAttr = attr({"src": imageLink, "alt": "book cover"})
-      var bookHtml = `<div class="container">
+      var bookHtml = `<section class="container">
+      <div class="container">
       <div class="card-group vgr-cards">
       <div class="card">
       <div class="card-img-body">
@@ -101,31 +102,34 @@ function bookSearch(Title){
         <h4 class="card-title">${bookTitle}</h4>
         <p class="card-text">${author}</p>
         <p class="card-text">${bookSummary}</p>
-        <a href="#" class="btn btn-outline-primary">Primary</a>
+        <a href="#" class="btn btn-color">Add to My Library</a>
       </div>
-      </div>`;    
-      
-      $(".book-container").append(bookHtml);
+      </div>
+      </section>`;
+
+      console.log(bookHtml);      
+    
+      $("main").append(bookHtml);
     }
   }
 
 
   //click-event handlers
   //initialize search
-  $("#firstSearch").on("click", function(){
+  $("#firstSearch").on("click", function(e){
+    e.preventDefault;
      var search = $("#books").val().trim();
     if(search){
       callOMDB(search);
-      $("#firstSearch").val("");
     }else{
       return;
     };
-  })
+    $("#books").val("");
+  });
 
-//call GoogleBooks within Modal
+//modal click events
  $("#findBooks").on("click", function(){
   bookSearch($(this).attr("data-movie"));
-  
   $("#movieModal").modal("hide");
  });
 
@@ -133,7 +137,6 @@ function bookSearch(Title){
   $(".closeModal").on("click", function(){
     $("#firstSearch").val("");
     $("#movieModal").modal("hide");
-    
   });
     
   
