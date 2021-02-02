@@ -76,18 +76,18 @@ function bookSearch(Title){
       var bookTitle = response.items[i].volumeInfo.title;
       var author = response.items[i].volumeInfo.authors;
       var bookSummary = response.items[i].volumeInfo.description;
-      var bookHtml = `<section class="container">
-      <div class="container">
+      var bookHtml = `<section style="margin-bottom: 40px; padding: 30px; background-color:  rgb(128, 0, 0);" class="container">
+      <div class="container ">
       <div class="card-group vgr-cards">
-      <div class="card">
-      <div class="card-img-body">
+      <div  class="card">
+      <div style ="width:150px; height: 150px;" class="card-img-body">
       <img class="card-img"  src=${imageLink} alt="book cover">
       </div>
-      <div class="card-body">
-        <h4 class="card-title">${bookTitle}</h4>
+      <div "card-body">
+        <h4 style="text-align: left" class=" card-title">${bookTitle}</h4>
         <p class="card-text author">${author}</p>
-        <p class="card-text summary">${bookSummary}</p>
-        <button class="btn btn-color btn-book" data-book="${bookTitle}">Add to My Library</button>
+        <p style= "font-size: 15px;" class="card-text summary">${bookSummary}</p>
+        <button class="btn btn-color btn-size btn-book" data-book="${bookTitle}">Add to My Library</button>
       </div>
       </div>
       </section>`;
