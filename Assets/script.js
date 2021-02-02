@@ -137,18 +137,18 @@ function bookSearch(Title){
         var savedSummary = userLibrary[j].Summary;
         var savedCover = userLibrary[j].Cover;
 
-        var savedHtml = `<section class="container">
+        var savedHtml = `<section style="margin-bottom: 40px; padding: 30px; background-color:  rgb(128, 0, 0);" class="container">
         <div class="container">
         <div class="card-group vgr-cards">
         <div class="card">
-        <div class="card-img-body">
+        <div style ="width:150px; height: 150px;" class="card-img-body">
         <img class="card-img"  src=${savedCover} alt="book cover">
         </div>
         <div class="card-body">
           <h4 class="card-title">${savedTitle}</h4>
           <p class="card-text author">${savedAuthor}</p>
-          <p class="card-text summary">${savedSummary}</p>
-          <button class="btn btn-color btn-book" data-book="${savedTitle}">Add to My Library</button>
+          <p style= "font-size: 15px;" class="card-text summary">${savedSummary}</p>
+          <button class="btn btn-color btn-size btn-book" data-book="${savedTitle}">Add to My Library</button>
         </div>
         </div>
         </section>`;
