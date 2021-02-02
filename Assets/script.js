@@ -1,21 +1,11 @@
-//pseudo-coding out the javascript
-//user enters a move title into an input field and clicks a button.
-//on click-- if there is a value in the input field, call 'callOMDB' and pass value as parameter, if not, let user know we need a value, or just return.
-
-
-
-//renderMovie--will display information about the movie (should there be a "go-back" button that will clear results & local storage(last entry) in case the movie the user entered wasn't the one they meant?)
-
-//renderBooks--will display the books that are related to the movie that the user entered. add data-book to each generated card element;
 
 
 
 //NOT BUILT YET BUT---we need a myResults function that will add elements to where ever we plan on holding the user's previous searches (drop down list from navbar) etc.  Also possibly render the previous search list,  user can select an item from that list and the value of the item will pass through to the call API functions and paint the page
 //also renderButtons or renderListItems--will hold previous search values and allow user to toggle back and forth between searches
 
-//should we include a "My Library" html page that the user can link to off of the Navbar that will display the most recent title they looked up along with their book/movie history?
 
-//this will hold local storage
+//global variables for local storage and session storage
 var userLibrary = JSON.parse(localStorage.getItem('myBooks'))|| [];
 var storedMovieSearches = []
 
@@ -28,13 +18,14 @@ function callOMDB(movie){
       var Title = data.Title;
         //call render movie function
         renderMovie(data);
+        storeSearch (Title);
     });
   };
  
 
 //calls GoogleBooks API
 function bookSearch(Title){
-    var search = Title //$("#books").val().trim();
+    var search = Title 
 
   var queryURL = "https://www.googleapis.com/books/v1/volumes?q="+search;
   
@@ -83,22 +74,20 @@ function bookSearch(Title){
     for(var i = 0; i < 4; i++){
       var imageLink = response.items[i].volumeInfo.imageLinks.thumbnail;
       var bookTitle = response.items[i].volumeInfo.title;
-      // var bookCover = $("<img>").attr({"src": imageLink, "alt": "Book cover"})
       var author = response.items[i].volumeInfo.authors;
       var bookSummary = response.items[i].volumeInfo.description;
-      // var imgAttr = attr({"src": imageLink, "alt": "book cover"})
-      var bookHtml = `<section style="margin-bottom: 40px; padding: 30px; background-color:  rgb(128, 0, 0);" class="container">
-      <div class="container ">
+      var bookHtml = `<section class="container">
+      <div class="container">
       <div class="card-group vgr-cards">
-      <div  class="card">
-      <div style ="width:150px; height: 150px;" class="card-img-body">
+      <div class="card">
+      <div class="card-img-body">
       <img class="card-img"  src=${imageLink} alt="book cover">
       </div>
-      <div "card-body">
-        <h4 class=" card-title">${bookTitle}</h4>
+      <div class="card-body">
+        <h4 class="card-title">${bookTitle}</h4>
         <p class="card-text author">${author}</p>
-        <p style= "font-size: 15px;" class="card-text summary">${bookSummary}</p>
-        <button class="btn btn-color btn-size btn-book" data-book="${bookTitle}">Add to My Library</button>
+        <p class="card-text summary">${bookSummary}</p>
+        <button class="btn btn-color btn-book" data-book="${bookTitle}">Add to My Library</button>
       </div>
       </div>
       </section>`;
@@ -106,18 +95,18 @@ function bookSearch(Title){
            
       $(".results").append(bookHtml);
     }
+
+    //setting to and retrieving from local storage
     $(".btn-book").on("click", function(e){
       e.preventDefault
       var savedBook = {
-        // "Poster":$(this).parents($(".card-img-body").child($(".card-img").attr("src"))),
         "Title": $(this).attr("data-book"),
         "Author": $(this).siblings(".author").html(),
         "Summary": $(this).siblings(".summary").html(),
         "Cover": $(this).parent().siblings(".card-img-body").children(".card-img").attr("src")
       }
 
-      // console.log(savedBook);
-      userLibrary.push(savedBook);
+      userLibrary.unshift(savedBook);
       storeBooks();
     });
 
@@ -130,7 +119,7 @@ function bookSearch(Title){
   
   //called when libraryindex.html loads
   function loadMyLibrary(){
-    console.log(userLibrary);
+
       for(var j = 0; j < userLibrary.length; j++){
         var savedTitle = userLibrary[j].Title;
         var savedAuthor = userLibrary[j].Author;
@@ -157,11 +146,6 @@ function bookSearch(Title){
       }
     
   };
-
-  $(".clearLibrary").on("click", function(){
-    localStorage.clear();
-    location.reload();
-  })
   
 
   //click-event handlers
@@ -175,14 +159,13 @@ function bookSearch(Title){
       return;
     };
     $("#books").val("");
-    storeSearch (search);
+    // storeSearch (search);
   });
   
   function storeSearch (search) {
-    storedMovieSearches.push(search)
+    storedMovieSearches.unshift(search)
     sessionStorage.setItem("recent",JSON.stringify (storedMovieSearches))
  console.log(sessionStorage.getItem("recent"))  
-
 }
 
 
@@ -197,5 +180,9 @@ function bookSearch(Title){
     $("#firstSearch").val("");
     $("#movieModal").modal("hide");
   });
-    
+
+  //clear search results field
+$("#clear-search").on("click", function(){
+  $(".results").empty();
+})
   
