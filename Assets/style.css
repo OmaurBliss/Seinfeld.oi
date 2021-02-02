@@ -4,7 +4,7 @@ footer {
   bottom: 0;
   width: 100%;
   background-color: maroon;
-  height: 50px;
+  height: auto;
   border-top-width: 5px;
   border-top-style: solid;
   border-top-color: black;
@@ -87,6 +87,7 @@ body {
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
+  margin-bottom: 70px;
 }
 
 #books {
@@ -97,4 +98,14 @@ body {
   background-color: rgb(128, 0, 0);
   color: white;
   border: 1px solid white;
+}
+
+.btn-color:active {
+  background-color: rgb(90, 0, 0);
+}
+
+.btn:active {
+  -webkit-box-shadow: inset 0px 0px 5px black;
+  -moz-box-shadow: inset 0px 0px 5px black;
+  box-shadow: inset 0px 0px 5px black;
 }

@@ -157,6 +157,11 @@ function bookSearch(Title){
       }
     
   };
+
+  $(".clearLibrary").on("click", function(){
+    localStorage.clear();
+    location.reload();
+  })
   
 
   //click-event handlers
@@ -177,6 +182,7 @@ function bookSearch(Title){
     storedMovieSearches.push(search)
     sessionStorage.setItem("recent",JSON.stringify (storedMovieSearches))
  console.log(sessionStorage.getItem("recent"))  
+
 }
 
 
