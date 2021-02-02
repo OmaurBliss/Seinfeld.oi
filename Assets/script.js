@@ -84,7 +84,7 @@ function bookSearch(Title){
       <img class="card-img"  src=${imageLink} alt="book cover">
       </div>
       <div "card-body">
-        <h4 style="text-align: left" class=" card-title">${bookTitle}</h4>
+        <h4 class=" card-title">${bookTitle}</h4>
         <p class="card-text author">${author}</p>
         <p style= "font-size: 15px;" class="card-text summary">${bookSummary}</p>
         <button class="btn btn-color btn-size btn-book" data-book="${bookTitle}">Add to My Library</button>
