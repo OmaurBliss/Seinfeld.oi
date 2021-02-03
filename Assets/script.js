@@ -1,16 +1,14 @@
-
 //global variables for local storage and session storage
 var userLibrary = JSON.parse(localStorage.getItem("myBooks")) || [];
 var storedMovieSearches = [];
 
+//call OMDB API
 function callOMDB(movie) {
   var queryURL = "https://www.omdbapi.com/?t=" + movie + "&apikey=trilogy";
   $.ajax({
     url: queryURL,
     method: "GET",
     success: function (data) {
-      console.log(data);
-      console.log(typeof data.Response);
       if (data.Response === "False") {
         var errMssg = data.Error;
         $("#errorText").text(
@@ -19,30 +17,25 @@ function callOMDB(movie) {
         $("#errorModal").modal("show");
       } else {
         var Title = data.Title;
-        //call render movie function
+
         renderMovie(data);
         storeSearch(Title);
       }
     },
-    error: function (data) {
-      console.log(data); //handleAPICallError,
-    },
   });
 }
 
-//function errorModal(){}
-
+//call OMDB from drop-down buttons
 function recallOMDB(movie) {
   var queryURL = "https://www.omdbapi.com/?t=" + movie + "&apikey=trilogy";
   $.ajax({
     url: queryURL,
     method: "GET",
     success: function (info) {
-      //call render movie function
       renderMovie(info);
     },
     error: function (info) {
-      console.log(info); //handleAPICallError,
+      console.log(info);
     },
   });
 }
@@ -61,7 +54,7 @@ function bookSearch(Title) {
       renderBooks(response);
     },
     error: function (response) {
-      console.log(response); //
+      console.log(response);
     },
   });
 }
@@ -123,7 +116,6 @@ function renderBooks(response) {
 function storeSearch(search) {
   storedMovieSearches.unshift(search);
   sessionStorage.setItem("recent", JSON.stringify(storedMovieSearches));
-  console.log(sessionStorage.getItem("recent"));
 }
 
 function renderSearches() {
@@ -224,6 +216,9 @@ $(".clearLibrary").on("click", function (e) {
 
 //call renderSearches function to render session storage
 $("#recent-searches").on("click", function () {
+  if (!storedMovieSearches.length) {
+    return;
+  }
   renderSearches();
 });
 
