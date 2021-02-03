@@ -100,8 +100,8 @@ function handleAPICallError(xhr) {
       <div class="container ">
       <div class="card-group vgr-cards">
       <div  class="card">
-      <div style ="width:150px; height: 150px;" class="card-img-body">
-      <img class="card-img"  src=${imageLink} alt="book cover">
+      <div class="card-img-body">
+      <img style="max-width: 125px; padding-top: 20px" class="card-img"  src=${imageLink} alt="book cover">
       </div>
       <div "card-body">
         <h4 class=" card-title">${bookTitle}</h4>
