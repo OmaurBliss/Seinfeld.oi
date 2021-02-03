@@ -109,3 +109,12 @@ body {
   -moz-box-shadow: inset 0px 0px 5px black;
   box-shadow: inset 0px 0px 5px black;
 }
+
+.header {
+  font-family:Arial, Helvetica, sans-serif;
+
+}
+
+.animate__animated.animate__bounce {
+  --animate-duration: 4s;
+}
