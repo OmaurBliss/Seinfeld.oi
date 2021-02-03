@@ -121,7 +121,7 @@ function storeSearch(search) {
 function renderSearches() {
   $(".dropdown-menu").empty();
   for (var k = 0; k < storedMovieSearches.length; k++) {
-    var searchHTML = `<button id="movieBtn" class="dropdown-item" type ="button" data-recent="${storedMovieSearches[k]}">${storedMovieSearches[k]}</button>`;
+    var searchHTML = `<button id="movieBtn" class="dropdown-item sub-menu" type ="button" data-recent="${storedMovieSearches[k]}">${storedMovieSearches[k]}</button>`;
 
     $(".dropdown-menu").append(searchHTML);
   }
@@ -215,7 +215,16 @@ $(".clearLibrary").on("click", function (e) {
 });
 
 //call renderSearches function to render session storage
-$("#recent-searches").on("click", function () {
+$("#recent-searches").on("click", function (e) {
+  e.preventDefault();
+  if (!storedMovieSearches.length) {
+    return;
+  }
+  renderSearches();
+});
+
+$("#more-recent-searches").on("click", function (e) {
+  e.preventDefault();
   if (!storedMovieSearches.length) {
     return;
   }

@@ -108,7 +108,11 @@
     
   
     <footer>
-        <button class="btn btn-color" type="submit"><i class="fas fa-history"></i></button>
+      <div class="btn-group dropup">
+        <button id="more-recent-searches"
+        type="button" class="btn btn-color dropdown-toggle"  data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fas fa-history"></i></button>
+      <div class="dropdown-menu"><!--Drop-up menu populates here--></div>
+      </div>
         <button id="clear-search"class="btn btn-color" type="submit"><i class="fas fa-redo"></i></button>
     </footer>
 
