@@ -21,11 +21,13 @@ Third-party:
 
 ## Credits
 Front-end:
+
 [Omaur Bliss](https://github.com/OmaurBliss)
 
 [Josie Collins](https://github.com/josiecl)
 
 Back-end:
+
 [Jennifer Nelson](https://github.com/jnel-221)
 
 [Betiel ](https://github.com/betielbetu)
