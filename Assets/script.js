@@ -128,6 +128,13 @@ function renderSearches() {
   }
 }
 
+function emptySearches() {
+  $(".dropdown-menu").empty();
+  var noSearch = `<button id="movieBtn" class="dropdown-item sub-menu" type ="button" disabled>No Search History Yet</button>`;
+
+  $(".dropdown-menu").append(noSearch);
+}
+
 //setting to and retrieving from local storage
 $(document).on("click", ".btn-book", function (e) {
   e.preventDefault;
@@ -219,7 +226,7 @@ $(".clearLibrary").on("click", function (e) {
 $("#recent-searches").on("click", function (e) {
   e.preventDefault();
   if (!storedMovieSearches.length) {
-    return;
+    return emptySearches();
   }
   renderSearches();
 });
@@ -227,7 +234,7 @@ $("#recent-searches").on("click", function (e) {
 $("#more-recent-searches").on("click", function (e) {
   e.preventDefault();
   if (!storedMovieSearches.length) {
-    return;
+    return emptySearches();
   }
   renderSearches();
 });

@@ -119,5 +119,5 @@ body {
 }
 
 .sub-menu {
-  background-color: white;
+  background-color: white !important;
 }
