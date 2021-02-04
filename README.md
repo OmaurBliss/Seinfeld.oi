@@ -9,11 +9,13 @@ With this website, one can search a movie title and be greeted with a correspond
 
 ## APIs Used
 Server-side:
+
 [Google Books API](https://developers.google.com/books)
 
 [OMDB API](http://www.omdbapi.com/)
 
 Third-party:
+
 [Font Awesome](https://fontawesome.com/)
 
 [Animate.css](https://animate.style/)
@@ -46,3 +48,4 @@ Back-end:
 [Library Page Screenshot](https://user-images.githubusercontent.com/74507818/106903466-a2bcc900-66bf-11eb-9e08-4b8385bd1490.png)
 
 ## Link to deployed site
+[Bookflix](https://omaurbliss.github.io/Seinfeld.oi/)
