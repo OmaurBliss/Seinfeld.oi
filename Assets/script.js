@@ -61,17 +61,18 @@ function bookSearch(Title) {
 
 //render info from OMDB API to modal
 function renderMovie(data) {
-  $(".modal-body").empty();
+  $("#movie-modal-body").empty();
   var movieTitle = data.Title;
   var moviePosterURL = data.Poster;
   var genre = data.Genre;
   var releaseDate = data.Released;
   var plot = data.Plot;
-  var titleEl = $("h5");
+  var titleEl = $("#movie-title");
   var genreEl = $("<p>");
   var plotEl = $("<p>");
   var imgEl = $("<img>");
   var releasedEl = $("<p>");
+  console.log(titleEl);
 
   titleEl.text(movieTitle);
   genreEl.text(genre);
@@ -80,7 +81,7 @@ function renderMovie(data) {
   releasedEl.text("Released: " + releaseDate);
 
   $("#findBooks").attr("data-movie", movieTitle);
-  $(".modal-body").append(genreEl, imgEl, plotEl, releasedEl);
+  $("#movie-modal-body").append(genreEl, imgEl, plotEl, releasedEl);
   $("#movieModal").modal("show");
 }
 
