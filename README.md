@@ -32,7 +32,7 @@ Back-end:
 
 [Jennifer Nelson](https://github.com/jnel-221)
 
-[Betiel ](https://github.com/betielbetu)
+[Betiel Habtemariam](https://github.com/betielbetu)
 
 ## Links to Screenshots of Site
 [Main Page Screenshot](https://user-images.githubusercontent.com/74507818/106903430-96d10700-66bf-11eb-8041-bd22f0e445c8.png)
