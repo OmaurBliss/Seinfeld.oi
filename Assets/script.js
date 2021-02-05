@@ -225,6 +225,7 @@ $(".clearLibrary").on("click", function (e) {
 //call renderSearches function to render session storage
 $("#recent-searches").on("click", function (e) {
   e.preventDefault();
+  $(".dropdown-menu").empty();
   if (!storedMovieSearches.length) {
     return emptySearches();
   }
@@ -233,6 +234,7 @@ $("#recent-searches").on("click", function (e) {
 
 $("#more-recent-searches").on("click", function (e) {
   e.preventDefault();
+  $(".dropdown-menu").empty();
   if (!storedMovieSearches.length) {
     return emptySearches();
   }
